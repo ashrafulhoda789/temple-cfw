@@ -50,7 +50,7 @@ export const createAuth = (env) => {
         },
 
         advanced: {
-            useSecureCookies: false,
+            useSecureCookies: true,
             crossSubDomainCookies: {
                 enabled: false,
             },

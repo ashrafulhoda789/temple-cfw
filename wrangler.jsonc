@@ -13,5 +13,8 @@
 			"database_name": "golpahar-db",
 			"database_id": "446884fa-8659-4f57-880b-01c0a9596366"
 		}
-	]
+	],
+	"vars": {
+		"PRODUCTION_URL": "https://golpahar-mohashoshan-kali-mandir.asrafulhoda789.workers.dev"
+	}
 }
