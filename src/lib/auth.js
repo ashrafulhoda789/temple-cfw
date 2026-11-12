@@ -22,7 +22,7 @@ export const createAuth = (env) => {
         baseURL: env.BETTER_AUTH_URL,
 
         trustedOrigins: [
-            "http://localhost:5173",
+            env.PRODUCTION_URL
         ],
 
         session: {

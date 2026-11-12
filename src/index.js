@@ -14,12 +14,26 @@ const app = new Hono();
 app.use(logger());
 app.use(requestId());
 app.use(secureHeaders());
-app.use('*', cors({
-	origin: ["http://localhost:5173"],
-	allowMethods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-	allowHeaders: ["Content-Type", "Authorization"],
-	credentials: true,
-}))
+app.use('*', async (c, next) => {
+	const allowedOrigins = [
+		"http://localhost:5173",
+		c.env.PRODUCTION_URL      
+	];
+
+	const corsMiddleware = cors({
+		origin: (origin) => {
+			
+			if (!origin) return allowedOrigins[0];
+
+			return allowedOrigins.includes(origin) ? origin : null;
+		},
+		allowMethods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+		allowHeaders: ["Content-Type", "Authorization"],
+		credentials: true,
+	});
+
+	return corsMiddleware(c, next);
+});
 
 app.get("/", (c) => {
 	return c.json({
