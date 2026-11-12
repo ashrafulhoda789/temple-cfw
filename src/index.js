@@ -14,26 +14,13 @@ const app = new Hono();
 app.use(logger());
 app.use(requestId());
 app.use(secureHeaders());
-app.use('*', async (c, next) => {
-	const allowedOrigins = [
-		"http://localhost:5173",
-		c.env.PRODUCTION_URL      
-	];
+app.use('*', cors({
+	origin: "https://golpahar-mohashoshan-kali-mandir.asrafulhoda789.workers.dev",
+	allowMethods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+	allowHeaders: ["Content-Type", "Authorization"],
+	credentials: true,
 
-	const corsMiddleware = cors({
-		origin: (origin) => {
-			
-			if (!origin) return allowedOrigins[0];
-
-			return allowedOrigins.includes(origin) ? origin : null;
-		},
-		allowMethods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-		allowHeaders: ["Content-Type", "Authorization"],
-		credentials: true,
-	});
-
-	return corsMiddleware(c, next);
-});
+}))
 
 app.get("/", (c) => {
 	return c.json({
