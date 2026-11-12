@@ -1,0 +1,21 @@
+CREATE TABLE IF NOT EXISTS pujas (
+  id TEXT PRIMARY KEY,
+  title_en TEXT NOT NULL,
+  title_bn TEXT NOT NULL,
+  description_en TEXT DEFAULT '',
+  description_bn TEXT DEFAULT '',
+  price REAL NOT NULL DEFAULT 0.0,
+  date_en TEXT DEFAULT '',
+  date_bn TEXT DEFAULT '',
+  time TEXT DEFAULT '',
+  type_en TEXT DEFAULT '',
+  type_bn TEXT DEFAULT '',
+  location_en TEXT DEFAULT '',
+  location_bn TEXT DEFAULT '',
+  image TEXT DEFAULT '',
+  rules_en TEXT DEFAULT '',
+  rules_bn TEXT DEFAULT '',
+  is_available INTEGER NOT NULL DEFAULT 1,
+  created_at TEXT DEFAULT CURRENT_TIMESTAMP,
+  updated_at TEXT DEFAULT CURRENT_TIMESTAMP
+);
