@@ -19,6 +19,7 @@ pujaRoutes.get("/", async (c) => {
     }
 });
 
+
 pujaRoutes.get("/:id", async (c) => {
     const db = drizzle(c.env.DB, { schema });
     try {
