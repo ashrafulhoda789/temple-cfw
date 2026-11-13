@@ -15,6 +15,6 @@
 		}
 	],
 	"vars": {
-		"PRODUCTION_URL": "https://golpahar-mohashoshan-kali-mandir.asrafulhoda789.workers.dev"
+		"PRODUCTION_URL": "https://golpahar-kali-mandir.asrafulhoda789.workers.dev"
 	}
 }
