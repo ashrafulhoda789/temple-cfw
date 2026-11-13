@@ -22,7 +22,7 @@ export const createAuth = (env) => {
         baseURL: env.BETTER_AUTH_URL,
 
         trustedOrigins: [
-            env.PRODUCTION_URL
+            "https://golpahar-kali-mandir.asrafulhoda789.workers.dev"
         ],
 
         session: {

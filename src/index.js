@@ -15,7 +15,7 @@ app.use(logger());
 app.use(requestId());
 app.use(secureHeaders());
 app.use('*', cors({
-	origin: "https://golpahar-mohashoshan-kali-mandir.asrafulhoda789.workers.dev",
+	origin: "https://golpahar-kali-mandir.asrafulhoda789.workers.dev",
 	allowMethods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
 	allowHeaders: ["Content-Type", "Authorization"],
 	credentials: true,
