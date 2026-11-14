@@ -8,6 +8,10 @@ import authRoutes from "./routes/authRoutes";
 import dashboardRoutes from "./routes/dashboardRoutes";
 import contentRoutes from "./routes/contentRoutes";
 import pujaRoutes from "./routes/pujaRoutes";
+import eventRoutes from "./routes/eventRoutes";
+import noticeRoutes from "./routes/noticeRoutes";
+import galleryRoutes from "./routes/galleryRoutes";
+import committeeRoutes from "./routes/committeeRoutes";
 
 
 const app = new Hono();
@@ -15,7 +19,8 @@ app.use(logger());
 app.use(requestId());
 app.use(secureHeaders());
 app.use('*', cors({
-	origin: "https://golpahar-kali-mandir.asrafulhoda789.workers.dev",
+	// origin: "https://golpahar-kali-mandir.asrafulhoda789.workers.dev",
+	origin: "http://localhost:5173",
 	allowMethods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
 	allowHeaders: ["Content-Type", "Authorization"],
 	credentials: true,
@@ -39,7 +44,11 @@ const api = new Hono().basePath("/api");
 api.route("/auth", authRoutes);
 api.route("/dashboard", dashboardRoutes);
 api.route("/contents", contentRoutes);
-api.route("/pujas", pujaRoutes)
+api.route("/pujas", pujaRoutes);
+api.route("/events", eventRoutes);
+api.route("/notices", noticeRoutes);
+api.route("/gallery", galleryRoutes);
+api.route("/committee", committeeRoutes);
 
 app.route("/", api);
 

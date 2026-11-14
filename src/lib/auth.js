@@ -22,7 +22,8 @@ export const createAuth = (env) => {
         baseURL: env.BETTER_AUTH_URL,
 
         trustedOrigins: [
-            "https://golpahar-kali-mandir.asrafulhoda789.workers.dev"
+            "https://golpahar-kali-mandir.asrafulhoda789.workers.dev",
+            "http://localhost:5173"
         ],
 
         session: {
@@ -50,7 +51,7 @@ export const createAuth = (env) => {
         },
 
         advanced: {
-            useSecureCookies: true,
+            useSecureCookies: false, // I have to make it true for production
             crossSubDomainCookies: {
                 enabled: false,
             },
