@@ -51,7 +51,7 @@ export const createAuth = (env) => {
         },
 
         advanced: {
-            useSecureCookies: false, // I have to make it true for production
+            useSecureCookies: true, // I have to make it true for production
             crossSubDomainCookies: {
                 enabled: false,
             },
