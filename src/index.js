@@ -19,8 +19,8 @@ app.use(logger());
 app.use(requestId());
 app.use(secureHeaders());
 app.use('*', cors({
-	// origin: "https://golpahar-kali-mandir.asrafulhoda789.workers.dev",
-	origin: "http://localhost:5173",
+	origin: "https://golpahar-kali-mandir.asrafulhoda789.workers.dev",
+	// origin: "http://localhost:5173",
 	allowMethods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
 	allowHeaders: ["Content-Type", "Authorization"],
 	credentials: true,
