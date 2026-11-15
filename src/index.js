@@ -12,6 +12,7 @@ import eventRoutes from "./routes/eventRoutes";
 import noticeRoutes from "./routes/noticeRoutes";
 import galleryRoutes from "./routes/galleryRoutes";
 import committeeRoutes from "./routes/committeeRoutes";
+import contactRoutes from "./routes/contactRoutes";
 
 
 const app = new Hono();
@@ -49,6 +50,7 @@ api.route("/events", eventRoutes);
 api.route("/notices", noticeRoutes);
 api.route("/gallery", galleryRoutes);
 api.route("/committee", committeeRoutes);
+app.route('/api/contacts', contactRoutes);
 
 app.route("/", api);
 
