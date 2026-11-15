@@ -50,7 +50,7 @@ api.route("/events", eventRoutes);
 api.route("/notices", noticeRoutes);
 api.route("/gallery", galleryRoutes);
 api.route("/committee", committeeRoutes);
-app.route('/api/contacts', contactRoutes);
+app.route('/contacts', contactRoutes);
 
 app.route("/", api);
 
