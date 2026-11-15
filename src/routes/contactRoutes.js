@@ -39,12 +39,16 @@ contactRoutes.post("/", async (c) => {
 
         const { name, email, phone, message } = validation.data;
 
-        const newContact = await db.insert(schema.contacts).values({
-            name,
-            email: email || "",
-            phone: phone || "",
-            message
-        }).returning().get();
+        const newContact = await db
+            .insert(schema.contacts)
+            .values({
+                name,
+                email: email || "",
+                phone: phone || "",
+                message
+            })
+            .returning()
+            .get();
 
         return c.json({
             success: true,
@@ -61,7 +65,11 @@ contactRoutes.delete("/:id", protectedRoute, requireEditorOrAdmin, async (c) => 
     const db = drizzle(c.env.DB, { schema });
     try {
         const id = c.req.param("id");
-        const existing = await db.select().from(schema.contacts).where(eq(schema.contacts.id, id)).get();
+        const existing = await db
+            .select()
+            .from(schema.contacts)
+            .where(eq(schema.contacts.id, id))
+            .get();
 
         if (!existing) {
             return c.json({ success: false, message: "Contact message not found" }, 404);
