@@ -22,6 +22,7 @@ contactRoutes.get("/", protectedRoute, requireEditorOrAdmin, async (c) => {
     }
 });
 
+
 contactRoutes.post("/", async (c) => {
     const db = drizzle(c.env.DB, { schema });
     try {
