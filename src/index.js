@@ -13,6 +13,7 @@ import noticeRoutes from "./routes/noticeRoutes";
 import galleryRoutes from "./routes/galleryRoutes";
 import committeeRoutes from "./routes/committeeRoutes";
 import contactRoutes from "./routes/contactRoutes";
+import donationRoutes from "./routes/donationRoutes";
 
 
 const app = new Hono();
@@ -50,7 +51,8 @@ api.route("/events", eventRoutes);
 api.route("/notices", noticeRoutes);
 api.route("/gallery", galleryRoutes);
 api.route("/committee", committeeRoutes);
-app.route('/contacts', contactRoutes);
+api.route('/contacts', contactRoutes);
+api.route("/donations", donationRoutes);
 
 app.route("/", api);
 

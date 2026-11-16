@@ -7,5 +7,8 @@ export const contacts = sqliteTable("contacts", {
     email: text("email").default(""),
     phone: text("phone").default(""),
     message: text("message").notNull(),
-    createdAt: text("created_at").default(sql`CURRENT_TIMESTAMP`)
+    replyMessage: text("reply_message").default(""),
+    status: text("status").notNull().default("new"),
+    repliedAt: text("replied_at").default(""),
+    createdAt: text("created_at").default(sql`CURRENT_TIMESTAMP`),
 });

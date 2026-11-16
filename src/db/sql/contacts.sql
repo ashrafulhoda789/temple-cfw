@@ -4,5 +4,8 @@ CREATE TABLE IF NOT EXISTS contacts (
     email TEXT DEFAULT '',
     phone TEXT DEFAULT '',
     message TEXT NOT NULL,
+    reply_message TEXT DEFAULT '',
+    status TEXT NOT NULL DEFAULT 'new',
+    replied_at TEXT DEFAULT '',
     created_at TEXT DEFAULT CURRENT_TIMESTAMP
 );
