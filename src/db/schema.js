@@ -7,3 +7,4 @@ export * from "./schemas/gallerySchema";
 export * from "./schemas/committeeSchema";
 export * from "./schemas/contactSchema";
 export * from "./schemas/donationSchema";
+export * from "./schemas/pujaBookingSchema";

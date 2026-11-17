@@ -14,6 +14,7 @@ import galleryRoutes from "./routes/galleryRoutes";
 import committeeRoutes from "./routes/committeeRoutes";
 import contactRoutes from "./routes/contactRoutes";
 import donationRoutes from "./routes/donationRoutes";
+import pujaBookingRoutes from "./routes/pujaBookingRoutes";
 
 
 const app = new Hono();
@@ -23,7 +24,7 @@ app.use(secureHeaders());
 app.use('*', cors({
 	origin: "https://golpahar-kali-mandir.asrafulhoda789.workers.dev",
 	// origin: "http://localhost:5173",
-	allowMethods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+	allowMethods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
 	allowHeaders: ["Content-Type", "Authorization"],
 	credentials: true,
 
@@ -53,6 +54,7 @@ api.route("/gallery", galleryRoutes);
 api.route("/committee", committeeRoutes);
 api.route('/contacts', contactRoutes);
 api.route("/donations", donationRoutes);
+api.route("/puja-bookings", pujaBookingRoutes);
 
 app.route("/", api);
 

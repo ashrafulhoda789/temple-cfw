@@ -1,0 +1,20 @@
+CREATE TABLE IF NOT EXISTS puja_bookings (
+  id TEXT PRIMARY KEY,
+  reference_code TEXT NOT NULL UNIQUE,
+  name TEXT NOT NULL,
+  phone TEXT NOT NULL,
+  email TEXT DEFAULT '',
+  gotra TEXT NOT NULL,
+  preferred_date TEXT NOT NULL,
+  note TEXT DEFAULT '',
+  status TEXT NOT NULL DEFAULT 'pending',
+  payment_number TEXT DEFAULT '',
+  payment_method TEXT DEFAULT '',
+  transaction_id TEXT DEFAULT '',
+  payment_status TEXT NOT NULL DEFAULT 'unpaid',
+  scheduled_date TEXT DEFAULT '',
+  scheduled_time TEXT DEFAULT '',
+  admin_note TEXT DEFAULT '',
+  created_at TEXT DEFAULT CURRENT_TIMESTAMP,
+  updated_at TEXT DEFAULT CURRENT_TIMESTAMP
+);
