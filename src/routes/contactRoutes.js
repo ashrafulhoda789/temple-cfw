@@ -38,21 +38,18 @@ contactRoutes.post("/", async (c) => {
 
         const { name, email, phone, message } = validation.data;
 
-        const newContact = await db
+        await db
             .insert(schema.contacts)
             .values({
                 name,
                 email: email || "",
                 phone: phone || "",
                 message,
-            })
-            .returning()
-            .get();
+            });
 
         return c.json({
             success: true,
             message: "Message sent successfully!",
-            data: newContact,
         }, 201);
     } catch (err) {
         console.error("Error creating contact message:", err);
@@ -62,15 +59,18 @@ contactRoutes.post("/", async (c) => {
 
 contactRoutes.put("/:id/read", protectedRoute, requireEditorOrAdmin, async (c) => {
     const db = drizzle(c.env.DB, { schema });
-    const id = c.req.param("id");
-    
-    const updatedContact = await db.update(schema.contacts)
-        .set({ status: "read" })
-        .where(eq(schema.contacts.id, id))
-        .returning()
-        .get(); 
+    try {
+        const id = c.req.param("id");
+        
+        await db.update(schema.contacts)
+            .set({ status: "read" })
+            .where(eq(schema.contacts.id, id)); 
 
-    return c.json({ success: true, message: "Marked as read", data: updatedContact });
+        return c.json({ success: true, message: "Marked as read" });
+    } catch (err) {
+        console.error("Error marking contact as read:", err);
+        return c.json({ success: false, message: "Failed to update status" }, 500);
+    }
 });
 
 contactRoutes.put("/:id/reply", protectedRoute, requireEditorOrAdmin, async (c) => {
@@ -98,21 +98,18 @@ contactRoutes.put("/:id/reply", protectedRoute, requireEditorOrAdmin, async (c) 
             return c.json({ success: false, message: "Contact message not found" }, 404);
         }
 
-        const updatedContact = await db
+        await db
             .update(schema.contacts)
             .set({
                 replyMessage: validation.data.replyMessage,
                 status: "replied",
                 repliedAt: new Date().toISOString(),
             })
-            .where(eq(schema.contacts.id, id))
-            .returning()
-            .get();
+            .where(eq(schema.contacts.id, id));
 
         return c.json({
             success: true,
             message: "Reply saved successfully!",
-            data: updatedContact,
         });
     } catch (err) {
         console.error("Error replying to contact message:", err);
