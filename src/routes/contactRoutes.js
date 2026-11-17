@@ -45,6 +45,7 @@ contactRoutes.post("/", async (c) => {
                 email: email || "",
                 phone: phone || "",
                 message,
+                status: "unread",
             });
 
         return c.json({
@@ -61,12 +62,17 @@ contactRoutes.put("/:id/read", protectedRoute, requireEditorOrAdmin, async (c) =
     const db = drizzle(c.env.DB, { schema });
     try {
         const id = c.req.param("id");
-        
         await db.update(schema.contacts)
             .set({ status: "read" })
             .where(eq(schema.contacts.id, id)); 
 
-        return c.json({ success: true, message: "Marked as read" });
+        const updatedContact = await db
+            .select()
+            .from(schema.contacts)
+            .where(eq(schema.contacts.id, id))
+            .get();
+
+        return c.json({ success: true, message: "Marked as read", data: updatedContact });
     } catch (err) {
         console.error("Error marking contact as read:", err);
         return c.json({ success: false, message: "Failed to update status" }, 500);
@@ -107,9 +113,16 @@ contactRoutes.put("/:id/reply", protectedRoute, requireEditorOrAdmin, async (c) 
             })
             .where(eq(schema.contacts.id, id));
 
+        const updatedContact = await db
+            .select()
+            .from(schema.contacts)
+            .where(eq(schema.contacts.id, id))
+            .get();
+
         return c.json({
             success: true,
             message: "Reply saved successfully!",
+            data: updatedContact, 
         });
     } catch (err) {
         console.error("Error replying to contact message:", err);

@@ -8,7 +8,7 @@ export const contacts = sqliteTable("contacts", {
     phone: text("phone").default(""),
     message: text("message").notNull(),
     replyMessage: text("reply_message").default(""),
-    status: text("status").notNull().default("new"),
+    status: text("status").notNull().default("unread"),
     repliedAt: text("replied_at").default(""),
     createdAt: text("created_at").default(sql`CURRENT_TIMESTAMP`),
 });
