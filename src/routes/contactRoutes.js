@@ -64,11 +64,13 @@ contactRoutes.put("/:id/read", protectedRoute, requireEditorOrAdmin, async (c) =
     const db = drizzle(c.env.DB, { schema });
     const id = c.req.param("id");
     
-    await db.update(schema.contacts)
+    const updatedContact = await db.update(schema.contacts)
         .set({ status: "read" })
-        .where(eq(schema.contacts.id, id));
+        .where(eq(schema.contacts.id, id))
+        .returning()
+        .get(); 
 
-    return c.json({ success: true, message: "Marked as read" });
+    return c.json({ success: true, message: "Marked as read", data: updatedContact });
 });
 
 contactRoutes.put("/:id/reply", protectedRoute, requireEditorOrAdmin, async (c) => {
